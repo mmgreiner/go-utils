@@ -1,4 +1,4 @@
-module mmgreiner/utils
+module github.com/mmgreiner/utils
 
 go 1.20
 
