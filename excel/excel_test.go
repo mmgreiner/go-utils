@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/mmgreiner/go-utils/str2"
+	"gotest.tools/assert"
 )
 
 type TestStruct struct {
@@ -25,10 +26,8 @@ func toRow(row []string) TestStruct {
 }
 func TestRead(t *testing.T) {
 	data := []TestStruct{}
-	/*
-		err := ReadExcel("../testdata/test.xlsx", true, toRow, &data)
-		assert.Assert(t, err)
-		assert.Assert(t, len(data) > 0)
-	*/
+	err := ReadExcel("./test.xlsx", true, toRow, &data)
+	assert.Assert(t, err)
+	assert.Assert(t, len(data) > 0)
 	data = append(data, TestStruct{})
 }
