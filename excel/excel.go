@@ -6,10 +6,10 @@ import (
 
 // reads the given excel file and converts each row into a slice of strings.
 // uses the 'rowser' function to convert this slice into the actual data struct.
-func ReadExcel[T any](fn string, header bool, rower func([]string) T) ([]T, error) {
+func ReadExcel[T any](fn string, header bool, rower func([]string) T, data *[]T) error {
 	file, err := excelize.OpenFile(fn)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer file.Close()
 
@@ -21,11 +21,10 @@ func ReadExcel[T any](fn string, header bool, rower func([]string) T) ([]T, erro
 		rows.Next()
 	}
 
-	data := []T{}
 	for rows.Next() {
 		row, _ := rows.Columns()
 		dataRow := rower(row)
-		data = append(data, dataRow)
+		*data = append(*data, dataRow)
 	}
-	return data, nil
+	return nil
 }
