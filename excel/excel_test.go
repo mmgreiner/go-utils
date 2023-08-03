@@ -1,12 +1,13 @@
 package excel
 
 import (
-	"testing"
-
 	"time"
 
-	"github.com/mmgreiner/go-utils/str2"
+	"testing"
+
 	"gotest.tools/assert"
+
+	"github.com/mmgreiner/go-utils/str2"
 )
 
 type TestStruct struct {
@@ -29,5 +30,4 @@ func TestRead(t *testing.T) {
 	err := ReadExcel("./test.xlsx", true, toRow, &data)
 	assert.Assert(t, err)
 	assert.Assert(t, len(data) > 0)
-	data = append(data, TestStruct{})
 }
